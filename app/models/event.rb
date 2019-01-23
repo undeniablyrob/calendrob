@@ -4,9 +4,5 @@ class Event < ApplicationRecord
                         :end_time,
                         :duration,
                         :created_at,
-                        :invitees_count,
-                        :location,
-                        :canceled,
-                        :canceler_name,
-                        :canceled_at
+                        :location
 end

@@ -18,12 +18,11 @@ ActiveRecord::Schema.define(version: 2019_01_22_045504) do
     t.datetime "end_time", null: false
     t.integer "duration", null: false
     t.datetime "created_at", null: false
-    t.integer "invitees_count", null: false
     t.string "location", null: false
-    t.boolean "canceled", null: false
-    t.string "canceler_name", null: false
+    t.boolean "canceled"
+    t.string "canceler_name"
     t.string "cancel_reason"
-    t.datetime "canceled_at", null: false
+    t.datetime "canceled_at"
   end
 
 end
