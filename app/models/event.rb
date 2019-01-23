@@ -3,6 +3,5 @@ class Event < ApplicationRecord
                         :start_time, 
                         :end_time,
                         :duration,
-                        :created_at,
-                        :location
+                        :created_at
 end
