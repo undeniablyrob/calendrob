@@ -21,5 +21,15 @@ RSpec.describe "Webhooks API", type: :request do
       expect(json).not_to be_empty
       expect(json["uuid"]).to eq(invitee_created_json["payload"]["event"]["uuid"])
     end
+
+    it "allows for null cancellation data"
+
+    context "when there is no payload" do
+      it "raises an error"
+    end
+
+    context "when there is no event UUID" do
+      it "raises an error"
+    end
   end
 end
