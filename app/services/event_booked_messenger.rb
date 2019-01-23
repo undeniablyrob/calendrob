@@ -9,11 +9,13 @@ class EventBookedMessenger
 
   private
 
+  attr_reader :event
+
   def to_number
     "+17709284808"
   end
 
   def message
-    "You have a meeting booked!"
+    "Huzzah! You have a #{event.duration}-minute meeting booked on #{event.start_time.to_formatted_s(:short)}."
   end
 end
