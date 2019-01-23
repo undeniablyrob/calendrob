@@ -8,16 +8,37 @@ RSpec.describe TwilioTextMessenger do
   
   subject(:service) { TwilioTextMessenger.new(message, to_number) }
 
-  before do
-    expect(Twilio::REST::Client).to receive(:new).and_return(twilio_client)
-  end
-
   it "delegates the message to the Twilio client" do
+    expect(Twilio::REST::Client).to receive(:new).and_return(twilio_client)
     expect(twilio_messsages).to receive(:create).with(hash_including(
       :from,
       to: to_number,
       body: message,
     ))
     service.call
+  end
+
+  context "when the message is empty" do
+    let(:message) { nil }
+    
+    it "does not attempt to send a text" do
+      expect(Twilio::REST::Client).not_to receive(:new)
+      service.call
+    end
+  end
+
+  context "when the to number is empty" do
+    let(:to_number) { nil }
+
+    it "does not attempt to send a text" do
+      expect(Twilio::REST::Client).not_to receive(:new)
+      service.call
+    end
+  end
+
+  context "when the to number is not valid" do
+    let(:to_number) { "867-5309" }
+
+    it "raises an error"
   end
 end

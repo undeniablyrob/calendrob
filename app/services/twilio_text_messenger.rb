@@ -5,6 +5,8 @@ class TwilioTextMessenger
   end
 
   def call
+    return unless message && to_number
+
     client.messages.create({
       from: from_number,
       to: to_number,
