@@ -5,12 +5,21 @@ RSpec.describe "Webhooks API", type: :request do
     let(:invitee_created_file) { file_fixture("webhook_invitee_created.json") }
     let(:invitee_created_json) { JSON.parse(invitee_created_file.read) }
 
-    before do
-      post "/webhooks/invitee_created", params: invitee_created_json
+    it "saves the event from the payload" do
+      expect {
+        post "/webhooks/invitee_created", params: invitee_created_json
+      }.to change { Event.count }.by(1)
     end
 
     it "is successful" do
-      expect(response).to have_http_status(204)
+      post "/webhooks/invitee_created", params: invitee_created_json
+      expect(response).to be_successful
+    end
+
+    it "includes the Event created" do
+      post "/webhooks/invitee_created", params: invitee_created_json
+      expect(json).not_to be_empty
+      expect(json["uuid"]).to eq(invitee_created_json["payload"]["event"]["uuid"])
     end
   end
 end
