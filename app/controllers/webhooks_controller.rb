@@ -13,6 +13,7 @@ class WebhooksController < ApplicationController
       canceled_at:   invitee_created_params[:event][:canceled_at],
     )
     
+    EventBookedMessenger.new(@event).call
     json_response(@event)
   end
 
