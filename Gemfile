@@ -8,6 +8,8 @@ gem 'sqlite3'
 gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'twilio-ruby'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.8'
